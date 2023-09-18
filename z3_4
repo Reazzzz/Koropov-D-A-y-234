@@ -1,0 +1,9 @@
+def leght_sh(a4, b4, l4, N4):
+     length = 2 * (N4 - 1) * a4 + 2 * N4 * b4 + l4
+     return length
+a4 = int(input())
+b4= int(input())
+l4= int(input())
+N4= int(input())
+result = leght_sh(a4, b4, l4, N4)
+print("Длина шнурка:", result)
