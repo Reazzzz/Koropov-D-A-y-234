@@ -1,0 +1,7 @@
+def minimum(m5,i5,n5):
+    minimalnoe=min(m5,i5,n5)
+    print("Naimenshee", minimalnoe)
+m5=12
+i5=17
+n5=5
+minimum(m5,i5,n5)
