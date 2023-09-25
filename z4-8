@@ -6,4 +6,4 @@ if 1 <= n <= 9:
             print(j, end="")
         print()
 else:
-    print("Введите правильное число")
+    print("очибяка")
