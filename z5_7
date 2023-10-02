@@ -1,0 +1,10 @@
+c = 0
+prev = None
+while True:
+    n = int(input())
+    if n == 0:
+        break  
+    if prev is not None and n > prev:
+        c += 1
+    prev = n
+print(c)
