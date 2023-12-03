@@ -1,13 +1,14 @@
-def diagonal(matrix, row):
-    diagonal_element = matrix[row][row]
-    for i in range(len(matrix[row])):
-        matrix[row][i] /= diagonal_element
+def dig(matrix, k):
+    diagonal = matrix[k-1][k-1]
+    for i in range(len(matrix[k-1])):
+        matrix[k-1][i] /= diagonal
+    return matrix
 
 def read(filename):
     matrix = []
     with open(filename, 'r') as file:
         for line in file:
-            row = list(map(int, line.split()))
+            row = [str(num) for num in line.split()]
             matrix.append(row)
     return matrix
 
@@ -16,16 +17,11 @@ def write(matrix, filename):
         for row in matrix:
             file.write(' '.join(map(str, row)) + '\n')
 
-# Ввод данных из файла
-filename = 'input.txt'
-matrix = read(filename)
+in_filename = "Коропов_у-234_ввод.txt"
+out_filename = "Коропов_у-234_вывод.txt"
 
-# Введите номер строки, которую необходимо разделить
-k = int(input('Введите номер строки k: '))
+matrix = read(in_filename)
+k = int(input("Enter k: "))
+res = dig(matrix, k)
+write(res, out_filename)
 
-# Разделение элементов k-й строки
-diagonal(matrix, k-1)
-
-# Вывод результатов в файл
-output_filename = 'output.txt'
-write(matrix, output_filename)
