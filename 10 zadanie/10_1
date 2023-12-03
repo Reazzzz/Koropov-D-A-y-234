@@ -1,32 +1,31 @@
-def F(matrix, k):
-    count = 0
-    max_value = None
-    for row in matrix:
-        for element in row:
-            if element % k == 0:
-                count += 1
-                if max_value is None or element > max_value:
-                    max_value = element
-    return count, max_value
-def Read(file_name):
-    with open(file_name, 'r') as file:
-        lines = file.readlines()
-        matrix = [list(map(int, line.split())) for line in lines[:-1]]  # Исключаем последнюю строку с k
-        k = int(lines[-1])
-    return matrix, k
-def Write(count, max_value, output_file_name):
-    with open(output_file_name, 'w') as file:
-        file.write(f"Количество элементов, кратных {k}: {count}\n")
-        file.write(f"Наибольший элемент, кратный {k}: {max_value}\n")
-# Организация ввода данных 
-input_file_name = "Коропов_У-234_vvod.txt"
-matrix, k = Read(input_file_name)
-#числа элементов, кратных k, и наибольшего из этих элементов
-count, max_value = F(matrix, k)
+def diagonal(matrix, row):
+    diagonal_element = matrix[row][row]
+    for i in range(len(matrix[row])):
+        matrix[row][i] /= diagonal_element
 
-# Организация вывода результатов в файл
-output_file_name = "Коропов_У-234_vivod.txt"
-Write(count, max_value, output_file_name)
+def read(filename):
+    matrix = []
+    with open(filename, 'r') as file:
+        for line in file:
+            row = list(map(int, line.split()))
+            matrix.append(row)
+    return matrix
 
-print(f"Количество элементов, кратных {k}: {count}")
-print(f"Наибольший элемент, кратный {k}: {max_value}")
+def write(matrix, filename):
+    with open(filename, 'w') as file:
+        for row in matrix:
+            file.write(' '.join(map(str, row)) + '\n')
+
+# Ввод данных из файла
+filename = 'input.txt'
+matrix = read(filename)
+
+# Введите номер строки, которую необходимо разделить
+k = int(input('Введите номер строки k: '))
+
+# Разделение элементов k-й строки
+diagonal(matrix, k-1)
+
+# Вывод результатов в файл
+output_filename = 'output.txt'
+write(matrix, output_filename)
